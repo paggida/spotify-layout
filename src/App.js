@@ -1,13 +1,11 @@
-import React from "react";
+import React from 'react';
+import GlobalStyle from './styles/global';
 
-function App() {
-  return (
-    <div className="App">
-      <p>
-        Edit <code>src/App.js</code> and save to reload.
-      </p>
-    </div>
-  );
-}
+const App = () => (
+  <div>
+    <GlobalStyle />
+    <h1>Hello world!!</h1>
+  </div>
+);
 
 export default App;
