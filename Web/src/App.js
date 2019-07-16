@@ -1,28 +1,32 @@
 import React from 'react';
-import { BrowserRouter } from 'react-router-dom'; /* Da o acesso aoc componentes filhos as rotas */
-import GlobalStyle from './styles/global';
+import { Provider } from 'react-redux';
+import { BrowserRouter } from 'react-router-dom';
 import 'rc-slider/assets/index.css';
 import './config/reactotron';
 import { Wrapper, Container, Content } from './styles/components';
+import GlobalStyle from './styles/global';
+import store from './store';
 import Routes from './routes';
 import Header from './components/Header';
 import Sidebar from './components/Sidebar';
 import Player from './components/Player';
 
 const App = () => (
-  <BrowserRouter>
-    <Wrapper>
-      <GlobalStyle />
-      <Container>
-        <Sidebar />
-        <Content>
-          <Header />
-          <Routes />
-        </Content>
-      </Container>
-      <Player />
-    </Wrapper>
-  </BrowserRouter>
+  <Provider store={store}>
+    <BrowserRouter>
+      <Wrapper>
+        <GlobalStyle />
+        <Container>
+          <Sidebar />
+          <Content>
+            <Header />
+            <Routes />
+          </Content>
+        </Container>
+        <Player />
+      </Wrapper>
+    </BrowserRouter>
+  </Provider>
 );
 
 export default App;
