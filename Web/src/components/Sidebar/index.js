@@ -14,8 +14,6 @@ class Sidebar extends Component {
       propTypes.shape({
         id: propTypes.number,
         title: propTypes.string,
-        description: propTypes.string,
-        thumbnail: propTypes.string,
       }),
     ).isRequired,
   };
