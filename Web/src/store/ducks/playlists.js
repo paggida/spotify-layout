@@ -20,7 +20,7 @@ export default function playlists(state = INITIAL_STATE, action) {
       return {
         ...state,
         loading: false,
-        data: [action.payload.data],
+        data: action.payload.data,
       };
     default:
       return state;
