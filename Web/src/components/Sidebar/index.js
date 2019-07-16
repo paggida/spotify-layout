@@ -5,6 +5,7 @@ import { bindActionCreators } from 'redux';
 import propTypes from 'prop-types';
 import { Creators as PlayListsActions } from '../../store/ducks/playlists';
 import { Container, NewPlayList, Nav } from './styles';
+import Loading from '../Loading';
 import addPlayListIcon from '../../assets/images/add_playlist.svg';
 
 class Sidebar extends Component {
@@ -16,6 +17,7 @@ class Sidebar extends Component {
         title: propTypes.string,
       }),
     ).isRequired,
+    loading: propTypes.bool.isRequired,
   };
 
   componentDidMount() {
@@ -24,7 +26,7 @@ class Sidebar extends Component {
   }
 
   render() {
-    const { playLists } = this.props;
+    const { playLists, loading } = this.props;
     return (
       <Container>
         <div>
@@ -71,6 +73,7 @@ class Sidebar extends Component {
           <Nav>
             <li>
               <span>Playlists</span>
+              {loading && <Loading />}
             </li>
             {playLists.map(list => (
               <li key={list.id}>
@@ -90,6 +93,7 @@ class Sidebar extends Component {
 
 const mapStateToProps = state => ({
   playLists: state.playlists.data,
+  loading: state.playlists.loading,
 });
 const mapDispachToProps = dispatch => bindActionCreators(PlayListsActions, dispatch);
 export default connect(

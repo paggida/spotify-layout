@@ -6,6 +6,7 @@ import { Creators as PlayListsActions } from '../../store/ducks/playlists';
 import {
   Container, Title, List, Playlist,
 } from './styles';
+import Loading from '../../components/Loading';
 
 class Browse extends Component {
   static propTypes = {
@@ -18,6 +19,7 @@ class Browse extends Component {
         thumbnail: propTypes.string,
       }),
     ).isRequired,
+    loading: propTypes.bool.isRequired,
   };
 
   componentDidMount() {
@@ -26,10 +28,13 @@ class Browse extends Component {
   }
 
   render() {
-    const { playLists } = this.props;
+    const { playLists, loading } = this.props;
     return (
       <Container>
-        <Title>Navegar</Title>
+        <Title>
+Navegar
+          {loading && <Loading />}
+        </Title>
         <List>
           {playLists.map(list => (
             <Playlist key={list.id} to={`/playlist/${list.id}`}>
@@ -46,6 +51,7 @@ class Browse extends Component {
 
 const mapStateToProps = state => ({
   playLists: state.playlists.data,
+  loading: state.playlists.loading,
 });
 const mapDispachToProps = dispatch => bindActionCreators(PlayListsActions, dispatch);
 export default connect(
