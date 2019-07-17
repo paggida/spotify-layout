@@ -33,6 +33,7 @@
       "album": "Hybrid Theory",
       "file": "https://s3-sa-east-1.amazonaws.com/gonative/1.mp3",
       "thumbnail": "https://s3-sa-east-1.amazonaws.com/gonative/linkin_park.jpg",
+      "duration": "3:37",
       "playlistId": 1
     },
     {
@@ -42,6 +43,7 @@
       "album": "Hybrid Theory",
       "file": "https://s3-sa-east-1.amazonaws.com/gonative/2.mp3",
       "thumbnail": "https://s3-sa-east-1.amazonaws.com/gonative/linkin_park.jpg",
+      "duration": "4:12",
       "playlistId": 2
     },
     {
@@ -51,6 +53,7 @@
       "album": "Hybrid Theory",
       "file": "https://s3-sa-east-1.amazonaws.com/gonative/3.mp3",
       "thumbnail": "https://s3-sa-east-1.amazonaws.com/gonative/linkin_park.jpg",
+      "duration": "6:03",
       "playlistId": 3
     },
     {
@@ -60,6 +63,7 @@
       "album": "Hybrid Theory",
       "file": "https://s3-sa-east-1.amazonaws.com/gonative/4.mp3",
       "thumbnail": "https://s3-sa-east-1.amazonaws.com/gonative/linkin_park.jpg",
+      "duration": "3:40",
       "playlistId": 4
     },
     {
@@ -69,6 +73,7 @@
       "album": "Hybrid Theory",
       "file": "https://s3-sa-east-1.amazonaws.com/gonative/5.mp3",
       "thumbnail": "https://s3-sa-east-1.amazonaws.com/gonative/linkin_park.jpg",
+      "duration": "2:58",
       "playlistId": 4
     }
   ]
