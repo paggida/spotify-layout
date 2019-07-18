@@ -17,7 +17,20 @@ import ForwardIcon from '../../assets/images/forward.svg';
 import RepeatIcon from '../../assets/images/repeat.svg';
 
 const Player = ({
-  currentSong, status, play, pause, next, prev, playing, position, duration,
+  currentSong,
+  status,
+  play,
+  pause,
+  next,
+  prev,
+  playing,
+  position,
+  msPosition,
+  positionShow,
+  duration,
+  handlePosition,
+  setPosition,
+  progress,
 }) => (
   <Container>
     {!!currentSong && (
@@ -26,6 +39,7 @@ const Player = ({
         playStatus={status}
         onFinishedPlaying={next}
         onPlaying={playing}
+        position={msPosition}
       />
     )}
     <Current>
@@ -64,12 +78,16 @@ const Player = ({
         </button>
       </Controls>
       <Time>
-        <span>{position}</span>
+        <span>{positionShow || position}</span>
         <ProgressSlider>
           <Slider
             railStyle={{ background: '#404040', borderRadius: 10 }}
             trackStyle={{ background: '#1ED760' }}
             handleStyle={{ border: 0 }}
+            max={1000}
+            onChange={value => handlePosition(value / 1000)}
+            onAfterChange={value => setPosition(value / 1000)}
+            value={progress}
           />
         </ProgressSlider>
         <span>{duration}</span>
@@ -96,15 +114,21 @@ Player.propTypes = {
   }).isRequired,
   status: propTypes.string.isRequired,
   position: propTypes.string.isRequired,
+  msPosition: propTypes.number.isRequired,
+  positionShow: propTypes.string.isRequired,
   duration: propTypes.string.isRequired,
+  progress: propTypes.number.isRequired,
   play: propTypes.func.isRequired,
   pause: propTypes.func.isRequired,
   next: propTypes.func.isRequired,
   prev: propTypes.func.isRequired,
   playing: propTypes.func.isRequired,
+  handlePosition: propTypes.func.isRequired,
+  setPosition: propTypes.func.isRequired,
 };
 
 function msToTime(duration) {
+  if (!duration) return null;
   let seconds = parseInt((duration / 1000) % 60);
   const minutes = parseInt((duration / (1000 * 60)) % 60, 10);
 
@@ -115,8 +139,15 @@ function msToTime(duration) {
 const mapStateToProps = state => ({
   currentSong: state.player.currentSong,
   status: state.player.status,
+  msPosition: state.player.position,
   position: msToTime(state.player.position),
   duration: msToTime(state.player.duration),
+  positionShow: msToTime(state.player.positionShow),
+  progress:
+    parseInt(
+      (state.player.positionShow || state.player.position) * (1000 / state.player.duration),
+      10,
+    ) || 0,
 });
 const mapDispachToProps = dispatch => bindActionCreators(PlayerActions, dispatch);
 export default connect(
