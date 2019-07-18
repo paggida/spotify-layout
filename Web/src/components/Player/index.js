@@ -17,10 +17,17 @@ import ForwardIcon from '../../assets/images/forward.svg';
 import RepeatIcon from '../../assets/images/repeat.svg';
 
 const Player = ({
-  currentSong, status, play, pause, next, prev,
+  currentSong, status, play, pause, next, prev, playing, position, duration,
 }) => (
   <Container>
-    {!!currentSong && <Sound url={currentSong.file} playStatus={status} onFinishedPlaying={next} />}
+    {!!currentSong && (
+      <Sound
+        url={currentSong.file}
+        playStatus={status}
+        onFinishedPlaying={next}
+        onPlaying={playing}
+      />
+    )}
     <Current>
       {!!currentSong && (
         <Fragment>
@@ -57,7 +64,7 @@ const Player = ({
         </button>
       </Controls>
       <Time>
-        <span>1:39</span>
+        <span>{position}</span>
         <ProgressSlider>
           <Slider
             railStyle={{ background: '#404040', borderRadius: 10 }}
@@ -65,7 +72,7 @@ const Player = ({
             handleStyle={{ border: 0 }}
           />
         </ProgressSlider>
-        <span>4:24</span>
+        <span>{duration}</span>
       </Time>
     </Progress>
     <Volume>
@@ -88,15 +95,28 @@ Player.propTypes = {
     author: propTypes.string,
   }).isRequired,
   status: propTypes.string.isRequired,
+  position: propTypes.string.isRequired,
+  duration: propTypes.string.isRequired,
   play: propTypes.func.isRequired,
   pause: propTypes.func.isRequired,
   next: propTypes.func.isRequired,
   prev: propTypes.func.isRequired,
+  playing: propTypes.func.isRequired,
 };
+
+function msToTime(duration) {
+  let seconds = parseInt((duration / 1000) % 60);
+  const minutes = parseInt((duration / (1000 * 60)) % 60, 10);
+
+  seconds = seconds < 10 ? `0${seconds}` : seconds;
+  return `${minutes}:${seconds}`;
+}
 
 const mapStateToProps = state => ({
   currentSong: state.player.currentSong,
   status: state.player.status,
+  position: msToTime(state.player.position),
+  duration: msToTime(state.player.duration),
 });
 const mapDispachToProps = dispatch => bindActionCreators(PlayerActions, dispatch);
 export default connect(
