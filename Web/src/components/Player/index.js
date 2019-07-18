@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import Slider from 'rc-slider';
 import Sound from 'react-sound';
 import { connect } from 'react-redux';
@@ -20,14 +20,15 @@ const Player = ({ currentSong, status }) => (
   <Container>
     {!!currentSong && <Sound url={currentSong.file} playStatus={status} />}
     <Current>
-      <img
-        src={currentSong ? currentSong.thumbnail : ''}
-        alt={currentSong ? currentSong.title : ''}
-      />
-      <div>
-        <span>{currentSong ? currentSong.title : ''}</span>
-        <small>{currentSong ? currentSong.author : ''}</small>
-      </div>
+      {!!currentSong && (
+        <Fragment>
+          <img src={currentSong.thumbnail} alt={currentSong.title} />
+          <div>
+            <span>{currentSong.title}</span>
+            <small>{currentSong.author}</small>
+          </div>
+        </Fragment>
+      )}
     </Current>
     <Progress>
       <Controls>
@@ -77,6 +78,9 @@ const Player = ({ currentSong, status }) => (
 Player.propTypes = {
   currentSong: propTypes.shape({
     file: propTypes.string,
+    thumbnail: propTypes.string,
+    title: propTypes.string,
+    author: propTypes.string,
   }).isRequired,
   status: propTypes.string.isRequired,
 };
