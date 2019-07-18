@@ -16,6 +16,13 @@ class Playlist extends Component {
       title: propTypes.string,
       description: propTypes.string,
       thumbnail: propTypes.string,
+      songs: propTypes.shape({
+        id: propTypes.number,
+        title: propTypes.string,
+        author: propTypes.string,
+        album: propTypes.string,
+        duration: propTypes.string,
+      }),
     }).isRequired,
     loading: propTypes.bool.isRequired,
     match: propTypes.shape({
@@ -36,7 +43,7 @@ class Playlist extends Component {
   }
 
   loadPlayListDetails = () => {
-    const { id } = this.props.match.params; /* captura os parametros via react routes */
+    const { id } = this.props.match.params;
     const { getPlaylistsDetailsRequest } = this.props;
     getPlaylistsDetailsRequest(id);
   };

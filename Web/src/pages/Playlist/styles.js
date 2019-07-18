@@ -1,6 +1,4 @@
-import styled, {
-  css,
-} from 'styled-components'; /* permite a aplicação de varios estilos dependendo das propriedades do componente */
+import styled, { css } from 'styled-components';
 import { Spinner } from '../../components/Loading/styles';
 
 export const Container = styled.div`
