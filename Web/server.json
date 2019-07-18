@@ -42,7 +42,7 @@
       "author": "Linkin Park",
       "album": "Hybrid Theory",
       "file": "https://s3-sa-east-1.amazonaws.com/gonative/2.mp3",
-      "thumbnail": "https://s3-sa-east-1.amazonaws.com/gonative/linkin_park.jpg",
+      "thumbnail": "https://s3-sa-east-1.amazonaws.com/gonative/foo_fighters.jpg",
       "duration": "4:12",
       "playlistId": 2
     },
@@ -52,7 +52,7 @@
       "author": "Linkin Park",
       "album": "Hybrid Theory",
       "file": "https://s3-sa-east-1.amazonaws.com/gonative/3.mp3",
-      "thumbnail": "https://s3-sa-east-1.amazonaws.com/gonative/linkin_park.jpg",
+      "thumbnail": "https://s3-sa-east-1.amazonaws.com/gonative/alok.jpg",
       "duration": "6:03",
       "playlistId": 3
     },
@@ -62,7 +62,7 @@
       "author": "Linkin Park",
       "album": "Hybrid Theory",
       "file": "https://s3-sa-east-1.amazonaws.com/gonative/4.mp3",
-      "thumbnail": "https://s3-sa-east-1.amazonaws.com/gonative/linkin_park.jpg",
+      "thumbnail": "https://http2.mlstatic.com/agora-e-que-so-elas-2-cd-mulheres-do-sertanejo-D_NQ_NP_649991-MLB27407283699_052018-F.jpg",
       "duration": "3:40",
       "playlistId": 4
     },
@@ -72,7 +72,7 @@
       "author": "Linkin Park",
       "album": "Hybrid Theory",
       "file": "https://s3-sa-east-1.amazonaws.com/gonative/5.mp3",
-      "thumbnail": "https://s3-sa-east-1.amazonaws.com/gonative/linkin_park.jpg",
+      "thumbnail": "https://http2.mlstatic.com/agora-e-que-so-elas-2-cd-mulheres-do-sertanejo-D_NQ_NP_649991-MLB27407283699_052018-F.jpg",
       "duration": "2:58",
       "playlistId": 4
     }

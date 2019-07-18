@@ -21,12 +21,12 @@ const Player = ({ currentSong, status }) => (
     {!!currentSong && <Sound url={currentSong.file} playStatus={status} />}
     <Current>
       <img
-        src="https://upload.wikimedia.org/wikipedia/en/thumb/6/64/FFSkinBones.jpg/220px-FFSkinBones.jpg"
-        alt="Cover"
+        src={currentSong ? currentSong.thumbnail : ''}
+        alt={currentSong ? currentSong.title : ''}
       />
       <div>
-        <span>Times like these</span>
-        <small>Foo Fighters</small>
+        <span>{currentSong ? currentSong.title : ''}</span>
+        <small>{currentSong ? currentSong.author : ''}</small>
       </div>
     </Current>
     <Progress>
