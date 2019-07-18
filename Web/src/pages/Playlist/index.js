@@ -93,7 +93,7 @@ class Playlist extends Component {
                     else this.setState({ selectedSong: music.id });
                   }}
                   onDoubleClick={() => {
-                    loadSong(music);
+                    loadSong(music, playlistsDetails.songs);
                   }}
                   selected={selectedSong === music.id}
                   playing={currentSong && currentSong.id === music.id}
