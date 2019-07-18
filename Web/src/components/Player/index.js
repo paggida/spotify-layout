@@ -1,5 +1,10 @@
 import React from 'react';
 import Slider from 'rc-slider';
+import Sound from 'react-sound';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import propTypes from 'prop-types';
+import { Creators as PlayerActions } from '../../store/ducks/player';
 import {
   Container, Current, Volume, Progress, Controls, Time, ProgressSlider,
 } from './styles';
@@ -11,8 +16,9 @@ import PauseIcon from '../../assets/images/pause.svg';
 import ForwardIcon from '../../assets/images/forward.svg';
 import RepeatIcon from '../../assets/images/repeat.svg';
 
-const Player = () => (
+const Player = ({ currentSong, status }) => (
   <Container>
+    {!!currentSong && <Sound url={currentSong.file} playStatus={status} />}
     <Current>
       <img
         src="https://upload.wikimedia.org/wikipedia/en/thumb/6/64/FFSkinBones.jpg/220px-FFSkinBones.jpg"
@@ -68,4 +74,19 @@ const Player = () => (
   </Container>
 );
 
-export default Player;
+Player.propTypes = {
+  currentSong: propTypes.shape({
+    file: propTypes.string,
+  }).isRequired,
+  status: propTypes.string.isRequired,
+};
+
+const mapStateToProps = state => ({
+  currentSong: state.player.currentSong,
+  status: state.player.status,
+});
+const mapDispachToProps = dispatch => bindActionCreators(PlayerActions, dispatch);
+export default connect(
+  mapStateToProps,
+  mapDispachToProps,
+)(Player);
