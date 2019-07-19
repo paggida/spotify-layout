@@ -1,10 +1,13 @@
-import React from 'react';
-import '~/config/DevTools';
-import '~/config/Reactotron';
-// import { Provider } from 'react-redux';
-// import store from './store';
-import Routes from './routes';
+import React from "react";
+import "~/config/DevTools";
+import "~/config/Reactotron";
+import { Provider } from "react-redux";
+import store from "./store";
+import Routes from "./routes";
 
-/* <Provider store={store}> */
-const App = () => <Routes />;
+const App = () => (
+  <Provider store={store}>
+    <Routes />
+  </Provider>
+);
 export default App;
