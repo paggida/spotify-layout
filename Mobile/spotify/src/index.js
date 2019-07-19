@@ -1,6 +1,7 @@
 import React from 'react';
 import '~/config/DevTools';
 import '~/config/Reactotron';
+import '~/config/StatusBarConfig';
 import { Provider } from 'react-redux';
 import store from './store';
 import Routes from './routes';

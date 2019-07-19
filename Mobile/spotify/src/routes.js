@@ -1,15 +1,17 @@
-import { createAppContainer, createSwitchNavigator } from 'react-navigation';
+import { createAppContainer, createStackNavigator } from 'react-navigation';
 import Main from '~/pages/Main';
+import Podcast from '~/pages/Podcast';
 
 const Routes = createAppContainer(
-  createSwitchNavigator(
+  createStackNavigator(
     {
-      Main
+      Main,
+      Podcast,
     },
     {
-      initialRouteName: 'Main'
-    }
-  )
+      defaultNavigationOptions: { header: null },
+    },
+  ),
 );
 
 export default Routes;
