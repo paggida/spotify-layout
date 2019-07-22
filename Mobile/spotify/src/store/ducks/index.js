@@ -1,3 +1,6 @@
-import { combineReducers } from "redux";
+import { combineReducers } from 'redux';
+import { reducer as podcasts } from './podcasts';
 
-export default combineReducers({ Test: () => [] });
+export default combineReducers({
+  podcasts,
+});
