@@ -17,9 +17,9 @@ export default Creators;
  * Reducer
  */
 const INITIAL_STATE = Immutable({
-  data=[],
+  data: [],
 });
 
 export const reducer = createReducer(INITIAL_STATE, {
   [Types.LOAD_SUCCESS]: (state, { data }) => state.merge({ data }),
-})
+});
