@@ -10,6 +10,9 @@ import {
 class Main extends Component {
   static propTypes = {
     loadRequest: propTypes.func.isRequired,
+    navigation: propTypes.shape({
+      navigate: propTypes.func,
+    }).isRequired,
     podcasts: propTypes.shape({
       data: propTypes.arrayOf(
         propTypes.shape({
@@ -26,9 +29,13 @@ class Main extends Component {
     loadRequest();
   }
 
+  handlePodcastPress(podcast) {
+    const { navigation } = this.props;
+    navigation.navigate('Podcast', { podcast });
+  }
+
   render() {
     const { podcasts } = this.props;
-    console.tron.log(podcasts);
     return (
       <Container>
         <PodcastList
@@ -36,7 +43,7 @@ class Main extends Component {
           data={podcasts.data}
           keyExtractor={podcast => String(podcast.id)}
           renderItem={({ item: podcast }) => (
-            <Podcast osPress={() => {}}>
+            <Podcast onPress={() => this.handlePodcastPress(podcast)}>
               <Cover source={{ uri: podcast.cover }} />
               <Info>
                 <Title>{podcast.title}</Title>
