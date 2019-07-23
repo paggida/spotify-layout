@@ -1,12 +1,11 @@
 import {
   call, put, select, take,
 } from 'redux-saga/effects';
-import { eventChannel } from 'redux-saga'; // Função do Redux para ouvir eventos
+import { eventChannel } from 'redux-saga';
 import TrackPlayer from 'react-native-track-player';
 import PlayerActions from '~/store/ducks/player';
 
 export function* trackChanged() {
-  /* Poderia ser utilizado o addEventListener? Não pois ele não aceita funções de callback com Yield */
   const channel = eventChannel((emitter) => {
     const onTrackChange = TrackPlayer.addEventListener('playback-track-changed', emitter);
 
@@ -14,17 +13,16 @@ export function* trackChanged() {
   });
   try {
     while (true) {
-      const { nextTrack } = yield take(channel); // Para o processamento até receber um valor do channel
-      yield put(PlayerActions.setCurrent(nextTrack)); // Seta o novo Id antes da alteração
+      const { nextTrack } = yield take(channel);
+      yield put(PlayerActions.setCurrent(nextTrack));
     }
   } finally {
-    channel.close();
+    channel.close(); //
   }
 }
 export function* init() {
   yield call(TrackPlayer.setupPlayer);
-  // TrackPlayer.addEventListener('playback-track-changed', console.tron.log);
-  TrackPlayer.addEventListener('playback-state', () => {}); // Se o usuário receber uma ligação, esse evento é ativado como pausado
+  TrackPlayer.addEventListener('playback-state', () => {});
 }
 export function* setPodcast({ podcast, episodeId }) {
   const currentPodcast = yield select(state => state.player.podcast);
