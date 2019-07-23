@@ -67,7 +67,7 @@ export const Episode = styled.TouchableOpacity`
 `;
 export const Title = styled.Text`
   font-size: 16px;
-  color: #fff;
+  color: ${({ active }) => (active ? '#1db954' : '#FFF')};
 `;
 export const Author = styled.Text`
   color: #c4c4c4;

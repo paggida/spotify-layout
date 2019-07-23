@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import propTypes from 'prop-types';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import PlayerActions from '~/store/ducks/player';
 import {
@@ -20,14 +19,6 @@ import {
 } from './styles';
 
 class Podcast extends Component {
-  static propTypes = {
-    navigation: propTypes.shape({
-      getParam: propTypes.func,
-    }).isRequired,
-    setPodcastRequest: propTypes.func.isRequired,
-    player: propTypes.shape({}).isRequired,
-  };
-
   componentDidMount() {}
 
   handleBack = () => {
@@ -42,7 +33,7 @@ class Podcast extends Component {
   };
 
   render() {
-    const { navigation } = this.props;
+    const { navigation, currentEpisode } = this.props;
     const podcast = navigation.getParam('podcast');
 
     return (
@@ -65,7 +56,9 @@ class Podcast extends Component {
           keyExtractor={episode => String(episode.id)}
           renderItem={({ item: episode }) => (
             <Episode onPress={() => this.handlePlay(episode)}>
-              <Title>{episode.title}</Title>
+              <Title active={currentEpisode && currentEpisode.id === episode.id}>
+                {episode.title}
+              </Title>
               <Author>{episode.artist}</Author>
             </Episode>
           )}
@@ -76,7 +69,9 @@ class Podcast extends Component {
 }
 
 const mapStateToProps = state => ({
-  player: state.player,
+  currentEpisode: state.player.podcast
+    ? state.player.podcast.tracks.find(episode => episode.id === state.player.current)
+    : null,
 });
 const mapDispachToProps = dispatch => bindActionCreators(PlayerActions, dispatch);
 export default connect(
