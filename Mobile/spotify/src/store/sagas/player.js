@@ -17,11 +17,34 @@ export function* trackChanged() {
       yield put(PlayerActions.setCurrent(nextTrack));
     }
   } finally {
-    channel.close(); //
+    channel.close();
   }
 }
 export function* init() {
   yield call(TrackPlayer.setupPlayer);
+  TrackPlayer.updateOptions({
+    capabilities: [
+      // IOS
+      TrackPlayer.CAPABILITY_PLAY,
+      TrackPlayer.CAPABILITY_PAUSE,
+      TrackPlayer.CAPABILITY_SKIP_TO_NEXT,
+      TrackPlayer.CAPABILITY_SKIP_TO_PREVIOUS,
+      TrackPlayer.CAPABILITY_STOP,
+    ],
+    notificationsCapabilities: [
+      // Android
+      TrackPlayer.CAPABILITY_PLAY,
+      TrackPlayer.CAPABILITY_PAUSE,
+      TrackPlayer.CAPABILITY_SKIP_TO_NEXT,
+      TrackPlayer.CAPABILITY_SKIP_TO_PREVIOUS,
+      TrackPlayer.CAPABILITY_STOP,
+    ],
+    compactCapabilities: [
+      // IOS
+      TrackPlayer.CAPABILITY_PLAY,
+      TrackPlayer.CAPABILITY_PAUSE,
+    ],
+  });
   TrackPlayer.addEventListener('playback-state', () => {});
 }
 export function* setPodcast({ podcast, episodeId }) {
@@ -62,4 +85,8 @@ export function* next() {
     yield call(TrackPlayer.skipToNext);
     yield put(PlayerActions.play());
   }
+}
+export function* reset() {
+  yield call(TrackPlayer.stop);
+  yield call(TrackPlayer.reset);
 }
